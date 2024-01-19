@@ -1,8 +1,9 @@
 import { ReactNode } from "react"
+import Hero from "../../components/Hero"
 
 function Home(): ReactNode {
     return (
-        <div>Home</div>
+        <Hero />
     )
 }
 

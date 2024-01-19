@@ -17,6 +17,7 @@ function Header(): ReactNode {
             <nav>
                 <Link to="/">
                     <img src={Logo} alt="Logo Argent Bank" />
+                    <h1 className="sr-only">Argent Bank</h1>
                 </Link>
                 {isAccountPage ? ( // when logged
                     <div className='user-links'>
