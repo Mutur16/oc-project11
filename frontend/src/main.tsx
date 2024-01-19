@@ -7,7 +7,7 @@ import {
 
 import Base from './pages/Base'
 import Home from './pages/Home'
-import Login from './pages/Login'
+import SignIn from './pages/SignIn'
 import Account from './pages/Account'
 
 const router = createBrowserRouter([
@@ -20,8 +20,8 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: '/login',
-        element: <Login />
+        path: '/sign-in',
+        element: <SignIn />
       },
       {
         path: '/account',
