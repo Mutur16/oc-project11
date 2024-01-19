@@ -10,7 +10,7 @@ import SecurityIcon from "../../assets/icon-security.png"
 
 function Home(): ReactNode {
     return (
-        <>
+        <div className="main">
             <Hero />
             <section className="features">
                 <h2 className="sr-only">Features</h2>
@@ -39,7 +39,7 @@ function Home(): ReactNode {
                     }}
                 />
             </section>
-        </>
+        </div>
     )
 }
 
