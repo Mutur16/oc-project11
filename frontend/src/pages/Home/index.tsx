@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 import Hero from "../../components/Hero"
-import Card from "../../components/Card"
+import FeatureCard from "../../components/FeatureCard"
 
 import "./../../main.scss"
 import "./home.scss"
@@ -14,7 +14,7 @@ function Home(): ReactNode {
             <Hero />
             <section className="features">
                 <h2 className="sr-only">Features</h2>
-                <Card
+                <FeatureCard
                     feature={{
                         icon: ChatIcon, 
                         alt: "Chat Icon",
@@ -22,7 +22,7 @@ function Home(): ReactNode {
                         description: "Need to talk to a representative? You can get in touch through our 24/7 chat or through a phone call in less than 5 minutes."
                     }}
                 />
-                <Card
+                <FeatureCard
                     feature={{
                         icon: MoneyIcon, 
                         alt: "Chat Icon",
@@ -30,7 +30,7 @@ function Home(): ReactNode {
                         description: "The more you save with us, the higher your interest rate will be!"
                     }}
                 />
-                <Card
+                <FeatureCard
                     feature={{
                         icon: SecurityIcon, 
                         alt: "Chat Icon",

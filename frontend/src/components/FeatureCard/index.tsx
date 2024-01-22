@@ -1,8 +1,8 @@
 import { ReactNode } from "react"
 
-import './card.scss'
+import './featureCard.scss'
 
-function Card({ feature }: CardProps): ReactNode {
+function FeatureCard({ feature }: FeatureCardProps): ReactNode {
     return (
         <div className="feature-item">
             <img src={feature.icon} alt={feature.alt} className="feature-item-icon" />
@@ -12,15 +12,15 @@ function Card({ feature }: CardProps): ReactNode {
     )
 }
 
-type CardProps = {
-    feature: CardFeature
+type FeatureCardProps = {
+    feature: FeatureCardType
 }
 
-type CardFeature = {
+type FeatureCardType = {
     icon: string,
     alt: string,
     title: string,
     description: string
 }
 
-export default Card
+export default FeatureCard
