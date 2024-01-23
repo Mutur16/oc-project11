@@ -7,6 +7,7 @@ import "./signIn.scss"
 import SignInForm from "../../components/SignInForm"
 
 function SignIn(): ReactNode {
+
     return (
         <main className="main bg-dark">
             <section className="sign-in-content">
