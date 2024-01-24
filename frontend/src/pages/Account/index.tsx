@@ -1,12 +1,31 @@
-import { ReactNode } from "react"
+import { ReactNode, useEffect } from "react"
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { RootState } from './../../store';
+
 
 import "./account.scss"
 import AccountCard from "../../components/AccountCard"
 
 function Account(): ReactNode {
+    const navigate = useNavigate();
+    const isLogged = useSelector((state: RootState) => state.user.isLogged);
+    const firstName = useSelector((state: RootState) => state.user.user?.firstName);
+    const lastName = useSelector((state: RootState) => state.user.user?.lastName);
+
+    useEffect(() => {
+        if (!isLogged) {
+            navigate("/");
+        }
+    }, [isLogged, navigate]);
+
+    if (!isLogged) {
+        return null;
+    }
+
     return (
         <main className="main bg-dark">
-            <h2 className="welcome-title">Welcome back<br/>Tony Jarvis!</h2>
+            <h2 className="welcome-title">Welcome back<br/>{firstName} {lastName}</h2>
             <button className="edit-button">Edit Name</button>
             <h2 className="sr-only">Accounts</h2>
             <AccountCard 

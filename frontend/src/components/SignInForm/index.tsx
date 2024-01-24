@@ -1,10 +1,18 @@
 import { ReactNode, useState } from "react"
+import { useSelector, useDispatch } from "react-redux";
+import { loggedIn, setUserData } from "./../../reducers/userSlice";
+import { useNavigate } from "react-router-dom";
+import { RootState } from './../../store';
 
 import "../../main.scss"
 import "./signInForm.scss"
-import { login } from "../../helper/api"
+import { getUserData, login } from "../../helper/api"
 
 function SignInForm(): ReactNode {
+    const isLogged = useSelector((state: RootState) => state.user.isLogged)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [error, setError] = useState(false);
 
     async function onSubmit(event: React.FormEvent<SignInFormElement>) {
@@ -19,8 +27,20 @@ function SignInForm(): ReactNode {
             setError(true)
             return null;
         } else {
-            console.log(loginData.body.token)
+            const userData = await getUserData(loginData.body.token);
+            dispatch(loggedIn());
+            dispatch(setUserData({ 
+                email: userData.body.email, 
+                firstName: userData.body.firstName, 
+                lastName: userData.body.lastName, 
+                userName: userData.body.userName,
+                token : userData.body.token
+            }));
         }
+    }
+    if (isLogged) {
+        navigate("/account");
+        return null;
     }
 
     return (

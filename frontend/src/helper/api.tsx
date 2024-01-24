@@ -10,6 +10,16 @@ export async function login(email: string, password: string): Promise<LoginRespo
     return await response.json()
 }
 
+export async function getUserData(token : string) {
+    const response = await fetch(`${apiRoute}/v1/user/profile`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}` }
+    });
+
+    return await response.json()
+}
+
 type LoginResponse = {
     status: 200,
     message: string,
