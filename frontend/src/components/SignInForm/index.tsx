@@ -39,7 +39,7 @@ function SignInForm(): ReactNode {
         }
     }
     if (isLogged) {
-        navigate("/account");
+        navigate("/profile");
         return null;
     }
 

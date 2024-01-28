@@ -8,16 +8,12 @@ import { RootState } from './../../store';
 
 import '../../main.scss'
 import './header.scss'
-import Logo from '../../assets/argentBankLogo.png'
+import Logo from '../../assets/argentBankLogo.webp'
 
 function Header(): ReactNode {
     const dispatch = useDispatch();
     const isLogged = useSelector((state: RootState) => state.user.isLogged);
     const firstName = useSelector((state: RootState) => state.user.user?.firstName);
-
-    const handleSignOut = () => {
-        dispatch(loggedOut());
-    };
 
     return (
         <header>
@@ -28,11 +24,11 @@ function Header(): ReactNode {
                 </Link>
                 {isLogged ? ( // when logged
                     <div className='user-links'>
-                        <Link to="/account" className="link-container">
+                        <Link to="/profile" className="link-container">
                             <FontAwesomeIcon icon={faCircleUser} />
                             {firstName}
                         </Link>
-                        <Link to="/" className="link-container" onClick={handleSignOut}>
+                        <Link to="/" className="link-container" onClick={() => dispatch(loggedOut())}>
                             <FontAwesomeIcon icon={faSignOut} />
                             Sign Out
                         </Link>

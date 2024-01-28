@@ -1,13 +1,13 @@
 import { ReactNode, useEffect } from "react"
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { RootState } from './../../store';
+import { RootState } from '../../store';
 
 
-import "./account.scss"
+import "./profile.scss"
 import AccountCard from "../../components/AccountCard"
 
-function Account(): ReactNode {
+function Profile(): ReactNode {
     const navigate = useNavigate();
     const isLogged = useSelector((state: RootState) => state.user.isLogged);
     const firstName = useSelector((state: RootState) => state.user.user?.firstName);
@@ -15,7 +15,7 @@ function Account(): ReactNode {
 
     useEffect(() => {
         if (!isLogged) {
-            navigate("/");
+            navigate("/sign-in");
         }
     }, [isLogged, navigate]);
 
@@ -53,4 +53,4 @@ function Account(): ReactNode {
     )
 }
 
-export default Account
+export default Profile

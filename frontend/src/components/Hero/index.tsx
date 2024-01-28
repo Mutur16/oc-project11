@@ -2,7 +2,7 @@ import { ReactNode } from "react"
 
 import '../../main.scss'
 import './hero.scss'
-import HeroImg from '../../assets/bank-tree.jpeg'
+import HeroImg from '../../assets/bank-tree.webp'
 
 function Hero(): ReactNode {
     return (
