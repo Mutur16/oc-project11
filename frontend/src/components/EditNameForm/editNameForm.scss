@@ -1,0 +1,35 @@
+.edit-name-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+
+  .input-wrapper {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+button {
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+  margin-bottom: 2rem;
+}
+
+.btn-container {
+  display: flex;
+  gap: 20px;
+
+  .cancel-btn {
+    border-color: rgb(133, 130, 130);
+    background-color: rgb(133, 130, 130);
+  }
+}
+
+.hidden {
+  display: none;
+}
