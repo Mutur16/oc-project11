@@ -11,7 +11,6 @@ function Profile(): ReactNode {
   const navigate = useNavigate()
   const user = useSelector((state: RootState) => state.user)
   const isLogged = user.isLogged
-  const {firstName, lastName} = user.user!
 
   useEffect(() => {
     if (!isLogged) {
@@ -22,6 +21,8 @@ function Profile(): ReactNode {
   if (!isLogged) {
     return null
   }
+  
+  const { firstName, lastName } = user.user!
 
   return (
     <main className="main bg-dark">
