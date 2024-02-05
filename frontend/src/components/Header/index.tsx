@@ -14,7 +14,7 @@ function Header(): ReactNode {
   const dispatch = useDispatch()
   const user = useSelector((state: RootState) => state.user)
   const isLogged = user.isLogged
-  const firstName = user.user?.firstName
+  const userName = user.user?.userName
 
   return (
     <header>
@@ -27,7 +27,7 @@ function Header(): ReactNode {
           <div className="user-links">
             <Link to="/profile" className="link-container">
               <FontAwesomeIcon icon={faCircleUser} />
-              {firstName}
+              {userName}
             </Link>
             <Link
               to="/"

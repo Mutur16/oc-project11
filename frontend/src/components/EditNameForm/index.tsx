@@ -32,6 +32,7 @@ function EditNameForm(): ReactNode {
   return (
     <>
       <button
+        type='button'
         onClick={toggleEditNameForm}
         className={toggle === true ? 'hidden' : 'edit-name-btn'}
       >
