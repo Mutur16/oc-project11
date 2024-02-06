@@ -4,11 +4,12 @@ import { RootState } from '../../store'
 
 import './editNameForm.scss'
 import { editUserData } from '../../helper/api'
-import { UserState, setUserData } from '../../reducers/userSlice'
+import { UserData, updateUserData } from '../../reducers/authSlice'
 
 function EditNameForm(): ReactNode {
   const dispatch = useDispatch()
-  const user: UserState = useSelector((state: RootState) => state.user.user)!
+  const auth = useSelector((state: RootState) => state.auth)
+  const userData: UserData = auth.userData!
 
   const [toggle, setToggle] = useState(false)
   function toggleEditNameForm() {
@@ -19,10 +20,10 @@ function EditNameForm(): ReactNode {
     event.preventDefault()
 
     const newUserName = event.currentTarget.elements.username.value
-    await editUserData(newUserName, user.token)
+    await editUserData(newUserName, auth.token!)
     dispatch(
-      setUserData({
-        ...user,
+      updateUserData({
+        ...userData,
         userName: newUserName,
       })
     )
@@ -32,7 +33,7 @@ function EditNameForm(): ReactNode {
   return (
     <>
       <button
-        type='button'
+        type="button"
         onClick={toggleEditNameForm}
         className={toggle === true ? 'hidden' : 'edit-name-btn'}
       >
@@ -47,7 +48,7 @@ function EditNameForm(): ReactNode {
           <input
             type="text"
             name="username"
-            placeholder={user?.userName}
+            placeholder={userData?.userName}
             pattern="\w{3,16}"
             required
           />

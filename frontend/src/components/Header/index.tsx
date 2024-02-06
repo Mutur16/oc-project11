@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser, faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { ReactNode } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { loggedOut } from './../../reducers/userSlice'
+import { loginFailureOrLogout } from './../../reducers/authSlice'
 import { RootState } from './../../store'
 
 import '../../main.scss'
@@ -12,9 +12,9 @@ import Logo from '../../assets/argentBankLogo.webp'
 
 function Header(): ReactNode {
   const dispatch = useDispatch()
-  const user = useSelector((state: RootState) => state.user)
-  const isLogged = user.isLogged
-  const userName = user.user?.userName
+  const auth = useSelector((state: RootState) => state.auth)
+  const isLogged = auth.isLogged
+  const userName = auth.userData?.userName
 
   return (
     <header>
@@ -32,7 +32,7 @@ function Header(): ReactNode {
             <Link
               to="/"
               className="link-container"
-              onClick={() => dispatch(loggedOut())}
+              onClick={() => dispatch(loginFailureOrLogout())}
             >
               <FontAwesomeIcon icon={faSignOut} />
               Sign Out

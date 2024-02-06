@@ -1,46 +1,41 @@
-import { ReactNode, useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { loggedIn, setUserData } from './../../reducers/userSlice'
-import { useNavigate } from 'react-router-dom'
-import { RootState } from './../../store'
+import { ReactNode, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { loginSuccess, loginFailureOrLogout } from './../../reducers/authSlice'
 
 import '../../main.scss'
 import './signInForm.scss'
 import { getUserData, login } from '../../helper/api'
 
 function SignInForm(): ReactNode {
-  const isLogged = useSelector((state: RootState) => state.user.isLogged)
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const [error, setError] = useState(false)
-
-  useEffect(() => {
-    if (isLogged) {
-      navigate('/profile')
-    }
-  }, [isLogged, navigate])
 
   async function onSubmit(event: React.FormEvent<SignInFormElement>) {
     event.preventDefault()
 
+    const rememberMe: boolean = event.currentTarget.elements.remember_me.checked
     const loginData = await login(
       event.currentTarget.elements.email.value,
       event.currentTarget.elements.password.value
     )
 
     if (loginData.status === 400) {
+      dispatch(loginFailureOrLogout())
       setError(true)
     } else {
       const userData = await getUserData(loginData.body.token)
-      dispatch(loggedIn())
+
       dispatch(
-        setUserData({
-          email: userData.body.email,
-          firstName: userData.body.firstName,
-          lastName: userData.body.lastName,
-          userName: userData.body.userName,
+        loginSuccess({
           token: loginData.body.token,
+          userData: {
+            email: userData.body.email,
+            firstName: userData.body.firstName,
+            lastName: userData.body.lastName,
+            userName: userData.body.userName,
+          },
+          rememberMe: rememberMe,
         })
       )
     }

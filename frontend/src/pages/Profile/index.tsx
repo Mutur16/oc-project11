@@ -9,8 +9,8 @@ import AccountCard from '../../components/AccountCard'
 
 function Profile(): ReactNode {
   const navigate = useNavigate()
-  const user = useSelector((state: RootState) => state.user)
-  const isLogged = user.isLogged
+  const auth = useSelector((state: RootState) => state.auth)
+  const isLogged = auth.isLogged
 
   useEffect(() => {
     if (!isLogged) {
@@ -21,8 +21,8 @@ function Profile(): ReactNode {
   if (!isLogged) {
     return null
   }
-  
-  const { firstName, lastName } = user.user!
+
+  const { firstName, lastName } = auth.userData!
 
   return (
     <main className="main bg-dark">
